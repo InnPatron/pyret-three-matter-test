@@ -5,22 +5,26 @@ OUTDIR = output
 JS_OUTDIR = $(OUTDIR)/js
 PAGE_PATH = $(OUTDIR)/$(HTML_PAGE)
 
+PYRET_OUTPUT = .pyret
+
 SERVER = http://localhost:$(PORT)
 PORT = 8080
 
 BROWSER = firefox
 
-MAIN = ./js/main.js
+MAIN = src/main.arr
+OUT_MAIN = .pyret/compiled/project/src/main.arr.js
 
 run: build
 	$(BROWSER) $(SERVER)/$(HTML_PAGE)
 	
 .PHONY: server
 server:
-	http-server $(OUTDIR) &
+	http-server $(OUTDIR)
 
 build: setup
-	browserify $(MAIN) -o $(JS_OUTDIR)/$(BUNDLED)
+	anchor $(MAIN) -c
+	browserify "$(OUT_MAIN)" -o $(JS_OUTDIR)/$(BUNDLED)
 
 setup:
 	mkdir -p $(OUTDIR)
@@ -29,3 +33,4 @@ setup:
 .PHONY: clean
 clean: 
 	rm -r $(OUTDIR)
+	rm -r $(PYRET_OUTPUT)
