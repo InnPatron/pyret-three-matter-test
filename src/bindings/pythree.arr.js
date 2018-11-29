@@ -46,7 +46,7 @@ module.exports = {
   },
 
   'get-pos': function(obj3d) {
-    return obj3d.position;
+    return obj3d.position.clone();
   },
 
   'set-pos': function(obj3d, x, y, z) {
@@ -68,7 +68,7 @@ module.exports = {
   },
 
   'get-rot': function(obj3d) {
-    return obj3d.rotation;
+    return obj3d.rotation.clone();
   },
 
   'set-rot': function(obj3d, x, y, z) {
