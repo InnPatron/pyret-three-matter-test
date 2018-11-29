@@ -12,8 +12,21 @@ box-geom = THREE.box-geom(1, 1, 1)
 box-mat = THREE.simple-mesh-basic-mat(65280)
 cube = THREE.cube(box-geom, box-mat)
 
-THREE.scene-add(scene, cube)
+ground-geom = THREE.box-geom(10, 1, 1)
+ground-mat = THREE.simple-mesh-basic-mat(65280)
+ground = THREE.cube(ground-geom, ground-mat)
 
+THREE.scene-add(scene, cube)
+THREE.scene-add(scene, ground)
+
+THREE.set-pos-y(ground, -2)
 THREE.set-pos-z(camera, 5)
 
-A.animate(renderer, scene, camera)
+context = { cube: cube }
+animator = lam(shadow context):
+  block:
+    nothing
+  end
+end
+
+A.animate(renderer, scene, camera, animator, context)
