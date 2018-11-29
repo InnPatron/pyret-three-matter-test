@@ -7,7 +7,7 @@ module.exports = {
   },
 
   'rectangle': function(x, y, width, height, staticBody) {
-    return MATTER.rectangle(x, y, width, height, { isStatic: staticBody });
+    return MATTER.Bodies.rectangle(x, y, width, height, { isStatic: staticBody });
   },
 
   'set-restitution': function(body, restitution) {
@@ -23,6 +23,6 @@ module.exports = {
   },
 
   'get-pos': function(body) {
-    return body.position.clone();
+    return MATTER.Vector.clone(body.position);
   },
 };
