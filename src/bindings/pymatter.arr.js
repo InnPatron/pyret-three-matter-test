@@ -21,4 +21,8 @@ module.exports = {
   'run-engine': function(engine) {
     MATTER.Engine.run(engine);
   },
+
+  'get-pos': function(body) {
+    return body.position.clone();
+  },
 };
