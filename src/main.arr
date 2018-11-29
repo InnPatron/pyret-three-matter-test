@@ -25,7 +25,9 @@ THREE.set-pos-y(ground, -5)
 
 THREE.set-pos-z(camera, 20)
 
+# Physics set up
 engine = MATTER.create-engine()
+runner = MATTER.create-runner()
 
 # Create colliders
 cubeCollider = MATTER.rectangle(0, -2, 1, 1, false)
@@ -35,7 +37,7 @@ groundCollider = MATTER.rectangle(0, 5, 10, 3/2, true)
 MATTER.set-restitution(groundCollider, 0)
 
 MATTER.add-to-world(engine, [L.list: cubeCollider, groundCollider])
-MATTER.run-engine(engine)
+MATTER.run-engine(runner, engine)
 
 context = { cube: cube, cubeCollider: cubeCollider }
 animator = lam(shadow context):
