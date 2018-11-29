@@ -6,6 +6,10 @@ module.exports = {
     return MATTER.Engine.create();
   },
 
+  'create-runner': function() {
+    return MATTER.Runner.create();
+  },
+
   'rectangle': function(x, y, width, height, staticBody) {
     return MATTER.Bodies.rectangle(x, y, width, height, { isStatic: staticBody });
   },
@@ -18,8 +22,17 @@ module.exports = {
     MATTER.World.add(engine.world, bodies);
   },
 
-  'run-engine': function(engine) {
-    MATTER.Engine.run(engine);
+  'run-engine': function(runner, engine) {
+    MATTER.Runner.run(runner, engine);
+  },
+
+  'start-runner': function(runner) {
+    // Equivalent to run-engine()
+    MATTER.Runner.start(runner);
+  },
+
+  'stop-runner': function(runner) {
+    MATTER.Runner.stop(runner);
   },
 
   'get-pos': function(body) {
